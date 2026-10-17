@@ -1,0 +1,11 @@
+# Vercel
+.vercel
+
+# Variáveis de ambiente locais (nunca subir chaves)
+.env
+.env.*
+
+# Sistema
+node_modules
+.DS_Store
+Thumbs.db

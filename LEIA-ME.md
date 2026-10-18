@@ -56,6 +56,34 @@ Observações:
 - É obrigatório mostrar que as avaliações vêm do Google e o nome do autor (a página já faz isso).
 - A resposta fica em cache por 24 h, o que mantém o uso dentro da cota gratuita mensal.
 
+## Agenda musical
+
+A lista "Próximos shows" da seção de música (`js/agenda.js`) lê uma planilha do Google.
+
+1. **Crie a planilha** no Google Sheets com estas colunas na primeira linha:
+
+   | Data       | Hora  | Banda             | Estilo   |
+   |------------|-------|-------------------|----------|
+   | 24/10/2026 | 20h   | Trio Maresia      | MPB      |
+   | 25/10/2026 | 20h30 | Banda Pé na Areia | Pop rock |
+
+   - **Data**: `dd/mm/aaaa` (também aceita `dd/mm` e `dd/mm/aa`).
+   - **Hora**: `20h`, `20:30` ou `20h30`.
+   - **Estilo** é opcional. Linhas sem data válida ou sem banda são ignoradas.
+2. **Publique como CSV**: **Arquivo → Compartilhar → Publicar na Web**, escolha a aba da agenda,
+   o formato **Valores separados por vírgula (.csv)** e clique em **Publicar**. Copie o link gerado.
+3. **Cole o link** em `js/agenda.js`, na constante do topo:
+   ```js
+   const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/.../pub?gid=0&single=true&output=csv";
+   ```
+   Enquanto ela estiver vazia, a página mostra 4 shows de exemplo.
+4. **Compartilhe com o cliente**: botão **Compartilhar**, adicione o e-mail dele como **Editor**.
+   A partir daí ele mesmo mantém a agenda, sem mexer no site.
+
+Os shows de datas passadas somem sozinhos (vale o dia no horário de Brasília) e aparecem no máximo 6
+(`MAX_SHOWS`). Depois de editar a planilha, o site atualiza em até 5 minutos — é o tempo que o Google
+leva para republicar o CSV.
+
 ## Para conferir antes de publicar
 - Horários de funcionamento (seção "Como chegar").
 - Preços em `js/menu-data.js` (copiados do cardápio digital em outubro de 2026).

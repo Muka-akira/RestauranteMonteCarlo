@@ -424,7 +424,12 @@ html.is-loading .hero__photo::before { animation-play-state: paused; }
 @keyframes discIn { from { opacity: 0; transform: translateX(45%) rotate(-120deg); } to { opacity: 1; transform: none; } }
 .reveal .live:not(.is-in) .live__disc { opacity: 0; }
 .reveal .live.is-in .live__disc { animation: discIn 2.2s cubic-bezier(.2,.7,.2,1) both !important; }
-@media (max-width: 760px) { .live__disc { --disc: 260px; right: -130px; opacity: .55; } }
+/* Celular: disco menor no topo, ao lado do título; o texto abre espaço à direita para não ficar por baixo */
+@media (max-width: 760px) {
+  .live__disc { --disc: 160px; top: 3.5rem; right: -40px; margin-top: 0; }
+  .live__inner > div:first-child { padding-right: 124px; }
+  .live__text { display: none; }
+}
 @media (max-width: 520px) { .live .btn { white-space: normal; text-align: center; } }
 
 /* ---------- 7. Avaliações ---------- */
